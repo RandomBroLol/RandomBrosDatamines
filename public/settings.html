@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings</title>
+    <title>Settings Page</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa; /* Light background color */
+            background-color: #343a40; /* Dark background color */
+            color: #fff; /* Light text color */
+        }
+        .navbar {
+            background-color: #292d31; /* Darker navbar background */
+        }
+        .navbar-dark .navbar-nav .nav-link {
+            color: #fff; /* Light text color for links */
         }
         .container {
-            max-width: 600px;
-            margin-top: 3rem;
+            max-width: 600px; /* Limit container width */
+            margin-top: 3rem; /* Top margin */
         }
         .alert-box {
             background-color: #ffc107; /* Yellow alert background */
@@ -20,6 +27,7 @@
             padding: 1rem; /* Padding */
             border-radius: 5px; /* Rounded corners */
             margin-bottom: 1rem; /* Bottom margin */
+			display: none; /* Initially hidden */
         }
         /* Dark Mode Styles */
         .dark-mode {
@@ -30,53 +38,38 @@
             background-color: #343a40; /* Dark container background */
             color: #fff; /* Light text color */
         }
-        .dark-mode .alert-box {
-            background-color: #ffc107; /* Keep the alert box color same */
-            color: #333; /* Keep the text color same */
-        }
-        .dark-mode .topbar {
-            background-color: #212529; /* Darker background for topbar in dark mode */
-            color: #fff; /* Light text color for topbar in dark mode */
-        }
-        .dark-mode .topbar a {
-            color: #fff; /* Light text color for links in topbar in dark mode */
-        }
-        .topbar {
-            background-color: #f8f9fa; /* Light background color for topbar */
-            color: #000; /* Dark text color for topbar */
-            padding: 1rem; /* Padding for topbar */
-            margin-bottom: 1rem; /* Bottom margin for topbar */
-            display: flex;
-            justify-content: space-between;
-        }
-        .topbar a {
-            color: #000; /* Dark text color for links in topbar */
-            text-decoration: none;
-            margin: 0 1rem;
-        }
-        .btn-white {
-            background-color: #fff; /* White button background */
-            color: #000; /* Dark button text color */
-            border: 1px solid #ccc; /* Light border */
-        }
     </style>
 </head>
 <body>
-    <div class="topbar">
-        <div>
-            <a href="index.html">Home</a>
-            <a href="downloads.html">Downloads</a>
-            <a href="info.html">Info</a>
-            <a href="settings.html">Settings</a>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="index.html">Datamines</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="downloads.html">Downloads</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="info.html">Info</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="settings.html">Settings</a>
+                </li>
+            </ul>
         </div>
-    </div>
+    </nav>
     <div class="container">
-        <h1 class="mb-4">Settings</h1>
+        <h1 class="mb-4">Settings Page</h1>
+        <div id="alert-message" class="alert-box">The Savior (Creator Of this Website RandomBroLol) has saved your eyes to not be flashbanged. that means that this is a nuh uh!</div>
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="darkModeToggle">
-            <label class="form-check-label" for="darkModeToggle">Enable Dark Mode</label>
+            <input class="form-check-input" type="checkbox" id="darkModeToggle" checked>
+            <label class="form-check-label" for="darkModeToggle">Dark Mode</label>
         </div>
-        <a href="index.html" class="btn btn-primary mt-3">Back to Home</a>
     </div>
 
     <!-- Bootstrap JS and dependencies (optional) -->
@@ -85,22 +78,22 @@
     <script>
         // Apply dark mode based on localStorage
         window.onload = function() {
-            const darkModeEnabled = JSON.parse(localStorage.getItem("dark-mode"));
+            const darkModeEnabled = JSON.parse(localStorage.getItem("dark-mode")) ?? true;
             if (darkModeEnabled) {
                 document.body.classList.add("dark-mode");
-                document.getElementById('darkModeToggle').checked = true;
             }
-
-            document.getElementById('darkModeToggle').addEventListener('change', function() {
-                if (this.checked) {
-                    document.body.classList.add("dark-mode");
-                    localStorage.setItem("dark-mode", true);
-                } else {
-                    document.body.classList.remove("dark-mode");
-                    localStorage.setItem("dark-mode", false);
-                }
-            });
+            document.getElementById('darkModeToggle').checked = darkModeEnabled;
         };
+
+        document.getElementById('darkModeToggle').addEventListener('change', function() {
+            if (!this.checked) {
+                document.getElementById('alert-message').style.display = 'block';
+                return;
+            }
+            const darkModeEnabled = this.checked;
+            document.body.classList.toggle("dark-mode", darkModeEnabled);
+            localStorage.setItem("dark-mode", darkModeEnabled);
+        });
     </script>
 </body>
 </html>
