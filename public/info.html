@@ -8,36 +8,68 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa; /* Light gray background */
+            background-color: #343a40;
+            color: #fff;
         }
         .container {
-            max-width: 600px; /* Limit container width */
-            margin-top: 3rem; /* Top margin */
+            max-width: 600px;
+            margin-top: 3rem;
         }
         .alert-box {
-            background-color: #ffc107; /* Yellow alert background */
-            color: #333; /* Dark text color */
-            padding: 1rem; /* Padding */
-            border-radius: 5px; /* Rounded corners */
-            margin-bottom: 1rem; /* Bottom margin */
+            background-color: #ffc107;
+            color: #333;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        .dark-mode .alert-box {
+            background-color: #ffc107;
+            color: #333;
         }
         /* Dark Mode Styles */
         .dark-mode {
-            background-color: #343a40; /* Dark background color */
-            color: #fff; /* Light text color */
+            background-color: #343a40;
+            color: #fff;
         }
         .dark-mode .container {
-            background-color: #343a40; /* Dark container background */
-            color: #fff; /* Light text color */
+            background-color: #343a40;
+            color: #fff;
+        }
+        .navbar {
+            background-color: #343a40;
+        }
+        .navbar-dark .navbar-nav .nav-link {
+            color: #fff;
         }
     </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Datamines</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="downloads.html">Downloads</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="info.html">Info</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="settings.html">Settings</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
+        <div id="info-message" class="alert-box">Website is in Alpha so bugs should be fixed.</div>
         <h1 class="mb-4">Information Page</h1>
-        <div id="info-message" class="alert-box">Website is in Alpha so bugs should be fixed.</div> <!-- Modify this text for the information -->
-		<p>This Website is for educational purposes no viruses on this website checked by virustotal! will be updating this website in future so if the website goes down means that im updating it!</p>
-        <a href="index.html" class="btn btn-primary me-2">Back to Home</a>
+        <p>This website is for educational purposes. No viruses on this website, checked by VirusTotal! We will be updating this website in the future, so if the website goes down, it means that we're updating it!</p>
     </div>
 
     <!-- Bootstrap JS and dependencies (optional) -->
@@ -45,12 +77,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script>
         // Apply dark mode based on localStorage
-        window.onload = function() {
-            const darkModeEnabled = JSON.parse(localStorage.getItem("dark-mode"));
-            if (darkModeEnabled) {
-                document.body.classList.add("dark-mode");
-            }
-        };
+        const darkModeEnabled = JSON.parse(localStorage.getItem("dark-mode"));
+        if (darkModeEnabled) {
+            document.body.classList.add("dark-mode");
+        }
     </script>
 </body>
 </html>

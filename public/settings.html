@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background color */
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 3rem;
+        }
+        .alert-box {
+            background-color: #ffc107; /* Yellow alert background */
+            color: #333; /* Dark text color */
+            padding: 1rem; /* Padding */
+            border-radius: 5px; /* Rounded corners */
+            margin-bottom: 1rem; /* Bottom margin */
+        }
+        /* Dark Mode Styles */
+        .dark-mode {
+            background-color: #343a40; /* Dark background color */
+            color: #fff; /* Light text color */
+        }
+        .dark-mode .container {
+            background-color: #343a40; /* Dark container background */
+            color: #fff; /* Light text color */
+        }
+        .dark-mode .alert-box {
+            background-color: #ffc107; /* Keep the alert box color same */
+            color: #333; /* Keep the text color same */
+        }
+        .dark-mode .topbar {
+            background-color: #212529; /* Darker background for topbar in dark mode */
+            color: #fff; /* Light text color for topbar in dark mode */
+        }
+        .dark-mode .topbar a {
+            color: #fff; /* Light text color for links in topbar in dark mode */
+        }
+        .topbar {
+            background-color: #f8f9fa; /* Light background color for topbar */
+            color: #000; /* Dark text color for topbar */
+            padding: 1rem; /* Padding for topbar */
+            margin-bottom: 1rem; /* Bottom margin for topbar */
+            display: flex;
+            justify-content: space-between;
+        }
+        .topbar a {
+            color: #000; /* Dark text color for links in topbar */
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+        .btn-white {
+            background-color: #fff; /* White button background */
+            color: #000; /* Dark button text color */
+            border: 1px solid #ccc; /* Light border */
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div>
+            <a href="index.html">Home</a>
+            <a href="downloads.html">Downloads</a>
+            <a href="info.html">Info</a>
+            <a href="settings.html">Settings</a>
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="mb-4">Settings</h1>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="darkModeToggle">
+            <label class="form-check-label" for="darkModeToggle">Enable Dark Mode</label>
+        </div>
+        <a href="index.html" class="btn btn-primary mt-3">Back to Home</a>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        // Apply dark mode based on localStorage
+        window.onload = function() {
+            const darkModeEnabled = JSON.parse(localStorage.getItem("dark-mode"));
+            if (darkModeEnabled) {
+                document.body.classList.add("dark-mode");
+                document.getElementById('darkModeToggle').checked = true;
+            }
+
+            document.getElementById('darkModeToggle').addEventListener('change', function() {
+                if (this.checked) {
+                    document.body.classList.add("dark-mode");
+                    localStorage.setItem("dark-mode", true);
+                } else {
+                    document.body.classList.remove("dark-mode");
+                    localStorage.setItem("dark-mode", false);
+                }
+            });
+        };
+    </script>
+</body>
+</html>
